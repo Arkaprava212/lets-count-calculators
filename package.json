@@ -1,0 +1,8 @@
+{
+  "name": "lets-count-calculators",
+  "private": true,
+  "description": "Static calculator pages plus one optional serverless function (api/explain.js).",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^1.3.0"
+  }
+}

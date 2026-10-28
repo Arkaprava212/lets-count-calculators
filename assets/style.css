@@ -125,3 +125,9 @@ details.faq p { margin: 0; }
 .related a { display: inline-block; padding: 10px 14px; border: 1px solid var(--line); border-radius: 10px; background: #fff; text-decoration: none; font-weight: 600; }
 .related a:hover { border-color: var(--brand); }
 @media print { .site-header, .actions, .quick { display: none; } }
+
+/* optional AI explanation under a result */
+.ai { margin-top: 16px; padding-top: 14px; border-top: 1px solid var(--line); }
+.ai-out p { margin: 10px 0 0; }
+.ai .hint { margin-top: 8px; }
+.btn[disabled] { opacity: .6; cursor: progress; }

@@ -72,6 +72,11 @@
         assumeNoRes: 'No resting heart rate entered, so zones are simple percentages of the maximum.',
         assumeErr: 'A formula estimate can be 10 beats or more away from your true maximum. A watch or a doctor’s test is more accurate.'
       },
+      ai: {
+        btn: 'Explain this result in plain English', loading: 'Writing an explanation…',
+        note: 'Written by AI from the result figures only (never your name or email). It can make mistakes and is not medical advice.',
+        busy: 'Lots of people are asking right now. Please try again in a few minutes.', fail: 'Sorry, the explanation is not available right now. Your result above is still correct.'
+      },
       next: 'Try another calculator:'
     },
     hi: {
@@ -132,6 +137,11 @@
         assumeNoRes: 'आराम की हृदय गति नहीं डाली गई, इसलिए ज़ोन अधिकतम के सरल प्रतिशत हैं।',
         assumeErr: 'सूत्र से निकला अनुमान आपकी असली अधिकतम गति से 10 धड़कन या ज़्यादा अलग हो सकता है। घड़ी या डॉक्टर की जाँच अधिक सटीक है।'
       },
+      ai: {
+        btn: 'इस परिणाम को आसान भाषा में समझाएँ', loading: 'व्याख्या लिखी जा रही है…',
+        note: 'यह AI ने सिर्फ़ परिणाम के आँकड़ों से लिखा है (आपका नाम या ईमेल कभी नहीं भेजा जाता)। इसमें गलतियाँ हो सकती हैं और यह चिकित्सा सलाह नहीं है।',
+        busy: 'अभी बहुत लोग पूछ रहे हैं। कृपया कुछ मिनट बाद फिर कोशिश करें।', fail: 'क्षमा करें, अभी व्याख्या उपलब्ध नहीं है। ऊपर दिया गया आपका परिणाम सही है।'
+      },
       next: 'दूसरा कैलकुलेटर आज़माएँ:'
     }
   };
@@ -189,10 +199,49 @@
   function kv(rows) {
     return '<dl class="kv">' + rows.map(function (r) { return '<dt>' + r[0] + '</dt><dd>' + r[1] + '</dd>'; }).join('') + '</dl>';
   }
-  function finish(html) {
-    clearMarks();
-    resultEl.innerHTML = '<h2>' + S.result + '</h2>' + html;
+  // "Explain this result" appears only when the server says it is switched on (see api/explain.js).
+  var aiOn = false, lastFacts = null;
+  try {
+    fetch('/api/explain', { headers: { Accept: 'application/json' } })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (j) { aiOn = !!(j && j.enabled === true); })
+      .catch(function () { /* feature stays hidden */ });
+  } catch (e) { /* feature stays hidden */ }
+
+  function aiBlock() {
+    return '<div class="ai"><button type="button" class="btn btn-ghost" data-ai>✨ ' + S.ai.btn + '</button>' +
+      '<div class="ai-out" data-ai-out aria-live="polite"></div><p class="hint">' + S.ai.note + '</p></div>';
   }
+  function finish(html, facts) {
+    clearMarks();
+    lastFacts = facts || null;
+    resultEl.innerHTML = '<h2>' + S.result + '</h2>' + html + (aiOn && facts ? aiBlock() : '');
+  }
+
+  resultEl.addEventListener('click', function (e) {
+    var btn = e.target.closest ? e.target.closest('[data-ai]') : null;
+    if (!btn || !lastFacts) return;
+    var out = resultEl.querySelector('[data-ai-out]');
+    function show(text, bad) {
+      out.innerHTML = '';
+      String(text).split(/\n{2,}/).forEach(function (para) {
+        var p = document.createElement('p');
+        p.textContent = para;
+        if (bad) p.className = 'warn-line';
+        out.appendChild(p);
+      });
+    }
+    btn.disabled = true; show(S.ai.loading, false);
+    fetch('/api/explain', { method: 'POST', headers: { 'Content-Type': 'application/json', Accept: 'application/json' },
+      body: JSON.stringify({ calc: kind, lang: lang, facts: lastFacts }) })
+      .then(function (r) { return r.json().catch(function () { return {}; }).then(function (j) { return { status: r.status, body: j }; }); })
+      .then(function (r) {
+        if (r.status === 200 && r.body.text) show(r.body.text, false);
+        else show(r.status === 429 ? S.ai.busy : S.ai.fail, true);
+      })
+      .catch(function () { show(S.ai.fail, true); })
+      .then(function () { btn.disabled = false; });
+  });
 
   /* ---------------- calculators ---------------- */
   var run = {};
@@ -225,7 +274,9 @@
     var sp = C.splits(res.distanceKm, res.secPerKm, u);
     var table = '<h3>' + sub(S.pace.splitsTitle, { unit: S.unit[u] }) + '</h3><div class="table-wrap"><table><thead><tr><th>' + S.pace.mark + '</th><th>' + S.pace.cumulative + '</th></tr></thead><tbody>' +
       sp.map(function (r) { return '<tr><td>' + nf(r.mark, 2) + ' ' + S.unit[u] + (r.partial ? ' (' + S.pace.last + ')' : '') + '</td><td>' + C.fmtDuration(r.sec) + '</td></tr>'; }).join('') + '</tbody></table></div>';
-    finish(big + kv(rows) + table + assumeBox(S.pace.assume));
+    finish(big + kv(rows) + table + assumeBox(S.pace.assume), {
+      mode: mode, unit: u, distance: C.round(res.distanceKm / f, 2), time: C.fmtDuration(res.totalSec), pace: pace(secUnit), speed: C.round(speed, 1)
+    });
     return null;
   };
 
@@ -243,7 +294,11 @@
       return '<tr' + (r.isInput ? ' class="hl"' : '') + '><td>' + T.names[r.id] + (r.isInput ? ' ' + T.yours : '') + '</td><td>' + C.fmtDuration(r.sec) + '</td><td>' + pace(r.secPerKm * f) + ' ' + S.per[u] + '</td></tr>';
     }).join('');
     var warn = res.longReach ? '<p class="warn-line">' + T.longReach + '</p>' : '';
-    finish('<h3>' + T.title + '</h3><div class="table-wrap"><table><thead><tr><th>' + T.race + '</th><th>' + T.time + '</th><th>' + T.pace + '</th></tr></thead><tbody>' + rows + '</tbody></table></div>' + warn + assumeBox(T.assume));
+    var predictions = {};
+    res.races.forEach(function (r) { predictions[r.id] = C.fmtDuration(r.sec); });
+    finish('<h3>' + T.title + '</h3><div class="table-wrap"><table><thead><tr><th>' + T.race + '</th><th>' + T.time + '</th><th>' + T.pace + '</th></tr></thead><tbody>' + rows + '</tbody></table></div>' + warn + assumeBox(T.assume), {
+      unit: u, inputDistance: C.round(km / f, 2), inputTime: C.fmtDuration(seconds), predictions: predictions, longReach: !!res.longReach
+    });
     return null;
   };
 
@@ -265,7 +320,10 @@
     if (res.kmh !== null) rows.push([T.speed, nf(res.kmh / factor(u), 1) + ' ' + S.kmh[u]]);
     var note = res.usedDefault ? '<p class="warn-line">' + sub(T.defaultNote, { activity: S.activity[act] }) + '</p>' : '';
     finish('<p class="big">≈ ' + r5(res.kcal, 5) + ' <small>kcal</small></p><p>' + T.big + '</p><p>' + sub(T.range, { lo: r5(res.low, 10), hi: r5(res.high, 10) }) + '</p>' + kv(rows) + note +
-      assumeBox(T.assume.map(function (a) { return sub(a, { activity: S.activity[act] }); })));
+      assumeBox(T.assume.map(function (a) { return sub(a, { activity: S.activity[act] }); })), {
+        activity: act, minutes: Math.round(sec / 60), kcal: Math.round(res.kcal / 5) * 5, met: C.round(res.met, 1),
+        speed: res.kmh === null ? null : C.round(res.kmh / factor(u), 1), unit: u, usedDefault: !!res.usedDefault
+      });
     return null;
   };
 
@@ -285,7 +343,10 @@
       return '<tr><td>' + r.week + '</td><td>' + nf(r.vol, 1) + '</td><td>' + T.types[r.type] + '</td><td>' + nf(r.longRun, 1) + '</td></tr>';
     }).join('');
     finish('<p class="big" style="font-size:22px">' + msg + '</p><div class="table-wrap"><table><thead><tr><th>' + T.week + '</th><th>' + sub(T.total, { unit: S.unit[u] }) + '</th><th>' + T.type + '</th><th>' + sub(T.long, { unit: S.unit[u] }) + '</th></tr></thead><tbody>' + rows + '</tbody></table></div>' +
-      assumeBox(T.assume.map(function (a) { return sub(a, { rate: Math.round(rate * 100) }); })));
+      assumeBox(T.assume.map(function (a) { return sub(a, { rate: Math.round(rate * 100) }); })), {
+        unit: u, current: cur, goal: goal, weeks: weeks, ratePercent: Math.round(rate * 100),
+        reachedWeek: res.reachedWeek, peak: C.round(res.peak, 1), weeksNeeded: res.weeksNeeded
+      });
     return null;
   };
 
@@ -303,7 +364,9 @@
       return '<tr><td><span class="zone-bar" style="background:' + colours[i] + '"></span>' + z.zone + '</td><td>' + T.names[i] + '</td><td><strong>' + z.lo + '–' + z.hi + '</strong></td><td>' + z.pLo + '–' + z.pHi + '%</td><td>' + T.feels[i] + '</td></tr>';
     }).join('');
     var list = [method === 'classic' ? T.assumeClassic : T.assumeTanaka, T.assumeZones, res.useReserve ? T.assumeRes : T.assumeNoRes, T.assumeErr];
-    finish('<p class="big">' + res.maxHr + ' <small>' + T.bpm + '</small></p><p>' + T.max + '</p><div class="table-wrap"><table><thead><tr><th>' + T.zone + '</th><th>' + T.name + '</th><th>' + T.range + '</th><th>' + T.pct + '</th><th>' + T.feel + '</th></tr></thead><tbody>' + rows + '</tbody></table></div>' + assumeBox(list));
+    finish('<p class="big">' + res.maxHr + ' <small>' + T.bpm + '</small></p><p>' + T.max + '</p><div class="table-wrap"><table><thead><tr><th>' + T.zone + '</th><th>' + T.name + '</th><th>' + T.range + '</th><th>' + T.pct + '</th><th>' + T.feel + '</th></tr></thead><tbody>' + rows + '</tbody></table></div>' + assumeBox(list), {
+      maxHr: res.maxHr, method: method, hasResting: !!res.useReserve, zones: res.zones.map(function (z) { return z.lo + '-' + z.hi; })
+    });
     return null;
   };
 
