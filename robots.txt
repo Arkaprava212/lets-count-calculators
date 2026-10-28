@@ -2,4 +2,4 @@ User-agent: *
 Allow: /
 Disallow: /tests
 
-Sitemap: https://letscount.example/sitemap.xml
+Sitemap: https://lets-count-calculators.vercel.app/sitemap.xml
