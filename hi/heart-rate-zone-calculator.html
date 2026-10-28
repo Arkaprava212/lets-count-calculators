@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>हृदय गति ज़ोन कैलकुलेटर (उम्र के अनुसार) | Let's Count</title>
+<meta name="description" content="अपनी उम्र से अधिकतम हृदय गति और पाँच ट्रेनिंग ज़ोन का अनुमान लगाएँ, आराम की हृदय गति वैकल्पिक। मुफ़्त, सूत्र और सीमाएँ समझाई गई हैं।">
+<link rel="canonical" href="https://letscount.example/hi/heart-rate-zone-calculator">
+<link rel="alternate" hreflang="en" href="https://letscount.example/heart-rate-zone-calculator">
+<link rel="alternate" hreflang="hi" href="https://letscount.example/hi/heart-rate-zone-calculator">
+<link rel="alternate" hreflang="x-default" href="https://letscount.example/heart-rate-zone-calculator">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#1d4ed8">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Let's Count">
+<meta property="og:title" content="हृदय गति ज़ोन कैलकुलेटर (उम्र के अनुसार)">
+<meta property="og:description" content="अपनी उम्र से अधिकतम हृदय गति और पाँच ट्रेनिंग ज़ोन का अनुमान लगाएँ।">
+<meta property="og:url" content="https://letscount.example/hi/heart-rate-zone-calculator">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"हृदय गति ज़ोन कैलकुलेटर","url":"https://letscount.example/hi/heart-rate-zone-calculator","description":"उम्र से अधिकतम हृदय गति का अनुमान लगाकर उसे पाँच ट्रेनिंग ज़ोन में बाँटता है, वैकल्पिक रूप से आराम की हृदय गति का उपयोग करके।","applicationCategory":"HealthApplication","operatingSystem":"Any (web browser)","inLanguage":"hi","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://letscount.example/hi"},{"@type":"ListItem","position":2,"name":"हृदय गति ज़ोन कैलकुलेटर","item":"https://letscount.example/hi/heart-rate-zone-calculator"}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"मैं अपनी अधिकतम हृदय गति कैसे पता करूँ?","acceptedAnswer":{"@type":"Answer","text":"सटीक तरीके सिर्फ़ निगरानी में किया गया स्ट्रेस टेस्ट या हृदय गति मॉनिटर से नापी गई बहुत कठिन, सुरक्षित मेहनत हैं। ज़्यादातर लोगों के लिए उम्र पर आधारित सूत्र एक ठीक शुरुआती अनुमान है, पर आपकी असली अधिकतम गति 10 धड़कन प्रति मिनट या ज़्यादा अलग हो सकती है।"}},
+{"@type":"Question","name":"मुझे कौन-सा सूत्र चुनना चाहिए, तनाका या 220 में से उम्र घटाना?","acceptedAnswer":{"@type":"Answer","text":"दोनों लोगों के समूहों से निकले औसत हैं। तनाका सूत्र (208 − 0.7 × उम्र) अधिक अध्ययनों से बना है और 40 से ऊपर के वयस्कों पर 220 − उम्र से बेहतर बैठता है, इसलिए यहाँ वही पहले से चुना गया है।"}},
+{"@type":"Question","name":"शुरुआत करने वालों के लिए कौन-सा ज़ोन सबसे अच्छा है?","acceptedAnswer":{"@type":"Answer","text":"शुरुआती लोगों के ज़्यादातर सत्र आमतौर पर आसान मेहनत पर, ज़ोन 2 के आसपास, किए जाते हैं, जहाँ आप पूरे वाक्य बोल सकते हैं। कठिन ज़ोन कम इस्तेमाल होते हैं। अगर संदेह हो तो आसान शुरू करें और धीरे-धीरे बढ़ाएँ।"}},
+{"@type":"Question","name":"क्या दवाएँ या स्वास्थ्य समस्याएँ इन ज़ोन को बदलती हैं?","acceptedAnswer":{"@type":"Answer","text":"हाँ। बीटा-ब्लॉकर जैसी कुछ दवाएँ हृदय गति घटाती हैं, और कुछ हृदय रोगों में विशेष सीमाएँ चाहिए। अगर आप नियमित दवा लेते हैं या आपको हृदय, ब्लड प्रेशर या कोई और स्वास्थ्य समस्या है, तो डॉक्टर से पूछें कि आपके लिए कौन-सी हृदय गति सीमा सुरक्षित है।"}}
+]}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">मुख्य सामग्री पर जाएँ</a>
+<header class="site-header"><div class="wrap bar">
+<a class="brand" href="/hi"><img src="/assets/favicon.svg" alt="" width="34" height="34"><span>Let's Count</span></a>
+<nav class="site-nav" aria-label="मुख्य मेनू"><ul>
+<li><a href="/hi/pace-calculator">गति (पेस)</a></li>
+<li><a href="/hi/race-time-predictor">रेस का समय</a></li>
+<li><a href="/hi/calories-burned-calculator">कैलोरी</a></li>
+<li><a href="/hi/weekly-training-planner">ट्रेनिंग प्लान</a></li>
+<li><a href="/hi/heart-rate-zone-calculator" aria-current="page">हृदय गति ज़ोन</a></li>
+<li><a href="/hi/about">हमारे बारे में</a></li>
+</ul></nav>
+<a class="lang" href="/heart-rate-zone-calculator" hreflang="en" lang="en">English</a>
+</div></header>
+
+<main id="main" class="wrap">
+<p class="crumbs"><a href="/hi">होम</a> › हृदय गति ज़ोन कैलकुलेटर</p>
+<h1>हृदय गति ज़ोन कैलकुलेटर (उम्र के अनुसार)</h1>
+<p class="lead">मुफ़्त। अपनी उम्र डालें और अपनी अधिकतम हृदय गति का अनुमान और बहुत आसान से बहुत कठिन तक पाँच ट्रेनिंग ज़ोन देखें। अगर आपको आराम की हृदय गति पता है, तो उसे जोड़ने पर ज़ोन ज़्यादा व्यक्तिगत बनते हैं।</p>
+
+<div class="calc">
+<div class="panel">
+<h2>अपना विवरण डालें</h2>
+<form id="calc-form" data-calc="hr" novalidate>
+<div class="field"><label for="age">आपकी उम्र (वर्ष)</label>
+<input type="text" id="age" inputmode="numeric" autocomplete="off" placeholder="जैसे 30" data-field="age" data-label="उम्र"></div>
+<div class="field"><label for="resting">आराम की हृदय गति (धड़कन प्रति मिनट) <span class="hint">वैकल्पिक। इसे सुबह उठते ही, बिस्तर से उतरने से पहले नापें।</span></label>
+<input type="text" id="resting" inputmode="numeric" autocomplete="off" placeholder="जैसे 60" data-field="resting" data-label="आराम की हृदय गति"></div>
+<div class="field"><label for="method">अधिकतम हृदय गति का सूत्र</label>
+<select id="method" name="method"><option value="tanaka" selected>तनाका: 208 − 0.7 × उम्र (अनुशंसित)</option><option value="classic">क्लासिक: 220 − उम्र</option></select></div>
+<div class="actions">
+<button class="btn btn-primary" type="submit">गणना करें</button>
+<button class="btn btn-ghost" type="reset">रीसेट</button>
+<button class="btn btn-ghost" type="button" data-example='{"age":"30"}'>उदाहरण आज़माएँ</button>
+</div>
+</form>
+</div>
+<div class="panel"><div id="result" aria-live="polite"><h2>आपका परिणाम</h2><p class="placeholder">अपनी उम्र डालें और "गणना करें" दबाएँ। आपके ज़ोन और उपयोग की गई मान्यताएँ यहाँ दिखेंगी।</p></div></div>
+</div>
+
+<div class="content">
+<h2>यह कैलकुलेटर क्या करता है</h2>
+<p>ट्रेनिंग ज़ोन हृदय गति की वे सीमाएँ हैं जो अलग-अलग स्तर की मेहनत से मेल खाती हैं। आसान ज़ोन सहनशक्ति बनाते हैं और रिकवरी में मदद करते हैं, जबकि कठिन ज़ोन छोटी, योजनाबद्ध खुराकों में इस्तेमाल होते हैं। लैब जाँच के बिना ज़ोन तय करने का आम तरीका यह है कि उम्र से अधिकतम हृदय गति का अनुमान लगाया जाए और उसके प्रतिशत लिए जाएँ। यह कैलकुलेटर यही करता है।</p>
+
+<h2>गणना कैसे होती है</h2>
+<p class="formula">अधिकतम हृदय गति (तनाका) = 208 − 0.7 × उम्र<br>अधिकतम हृदय गति (क्लासिक) = 220 − उम्र<br>आराम की गति के बिना: ज़ोन = % × अधिकतम<br>आराम की गति के साथ: ज़ोन = आराम + % × (अधिकतम − आराम)</p>
+<p>पाँच ज़ोन 50–60%, 60–70%, 70–80%, 80–90% और 90–100% का उपयोग करते हैं। आराम की हृदय गति वाली दूसरी विधि को कार्वोनेन विधि, या हृदय गति रिज़र्व, कहते हैं। कम आराम-गति वाले फिट लोगों के लिए यह आमतौर पर ऊँचे ज़ोन देती है।</p>
+
+<h2>हल किया हुआ उदाहरण</h2>
+<p>30 साल का व्यक्ति तनाका सूत्र लेता है: 208 − 0.7 × 30 = 187 धड़कन प्रति मिनट। आराम की हृदय गति न देने पर ज़ोन 2 (60–70%) 0.6 × 187 ≈ 112 से 0.7 × 187 ≈ 131 धड़कन प्रति मिनट है। अगर आराम की हृदय गति 60 है, तो रिज़र्व 187 − 60 = 127 है और ज़ोन 2 बनता है 60 + 0.6 × 127 ≈ 136 से 60 + 0.7 × 127 ≈ 149। पाँचों ज़ोन देखने के लिए ऊपर "उदाहरण आज़माएँ" दबाएँ।</p>
+
+<h2>सीमाएँ</h2>
+<ul>
+<li>सूत्र एक औसत है। आपकी असली अधिकतम गति 10 धड़कन प्रति मिनट या ज़्यादा ऊपर-नीचे हो सकती है।</li>
+<li>हृदय गति गर्मी, तनाव, कैफ़ीन, नींद, बीमारी, ऊँचाई और कुछ दवाओं से बदलती है।</li>
+<li>ज़ोन मेहनत का मार्गदर्शन हैं, नुस्खा नहीं। आप कैसा महसूस करते हैं और क्या बात कर पाते हैं, यह भी उपयोगी जाँच है।</li>
+<li>कैलकुलेटर 10 से 100 वर्ष की उम्र और 30 से 120 धड़कन प्रति मिनट की आराम की हृदय गति स्वीकार करता है, और इस दायरे से बाहर के मान अस्वीकार कर देता है।</li>
+<li>यह चिकित्सा सलाह नहीं है। अगर आपको हृदय या कोई और स्वास्थ्य समस्या है, या व्यायाम में सीने में दर्द या चक्कर आए, तो रुकें और डॉक्टर को दिखाएँ।</li>
+</ul>
+
+<h2>आम सवाल</h2>
+<details class="faq"><summary>मैं अपनी अधिकतम हृदय गति कैसे पता करूँ?</summary><div><p>सटीक तरीके सिर्फ़ निगरानी में किया गया स्ट्रेस टेस्ट या हृदय गति मॉनिटर से नापी गई बहुत कठिन, सुरक्षित मेहनत हैं। ज़्यादातर लोगों के लिए उम्र पर आधारित सूत्र एक ठीक शुरुआती अनुमान है, पर आपकी असली अधिकतम गति 10 धड़कन प्रति मिनट या ज़्यादा अलग हो सकती है।</p></div></details>
+<details class="faq"><summary>मुझे कौन-सा सूत्र चुनना चाहिए, तनाका या 220 में से उम्र घटाना?</summary><div><p>दोनों लोगों के समूहों से निकले औसत हैं। तनाका सूत्र (208 − 0.7 × उम्र) अधिक अध्ययनों से बना है और 40 से ऊपर के वयस्कों पर 220 − उम्र से बेहतर बैठता है, इसलिए यहाँ वही पहले से चुना गया है।</p></div></details>
+<details class="faq"><summary>शुरुआत करने वालों के लिए कौन-सा ज़ोन सबसे अच्छा है?</summary><div><p>शुरुआती लोगों के ज़्यादातर सत्र आमतौर पर आसान मेहनत पर, ज़ोन 2 के आसपास, किए जाते हैं, जहाँ आप पूरे वाक्य बोल सकते हैं। कठिन ज़ोन कम इस्तेमाल होते हैं। अगर संदेह हो तो आसान शुरू करें और धीरे-धीरे बढ़ाएँ।</p></div></details>
+<details class="faq"><summary>क्या दवाएँ या स्वास्थ्य समस्याएँ इन ज़ोन को बदलती हैं?</summary><div><p>हाँ। बीटा-ब्लॉकर जैसी कुछ दवाएँ हृदय गति घटाती हैं, और कुछ हृदय रोगों में विशेष सीमाएँ चाहिए। अगर आप नियमित दवा लेते हैं या आपको हृदय, ब्लड प्रेशर या कोई और स्वास्थ्य समस्या है, तो डॉक्टर से पूछें कि आपके लिए कौन-सी हृदय गति सीमा सुरक्षित है।</p></div></details>
+
+<h2>संबंधित कैलकुलेटर</h2>
+<ul class="related">
+<li><a href="/hi/pace-calculator">पेस कैलकुलेटर</a></li>
+<li><a href="/hi/weekly-training-planner">साप्ताहिक ट्रेनिंग प्लानर</a></li>
+<li><a href="/hi/calories-burned-calculator">कैलोरी बर्न कैलकुलेटर</a></li>
+<li><a href="/hi/race-time-predictor">रेस टाइम प्रेडिक्टर</a></li>
+</ul>
+<p class="updated">अंतिम समीक्षा: 28 अक्टूबर 2026। परिणाम योजना के लिए अनुमान हैं, गारंटी नहीं।</p>
+</div>
+</main>
+<script src="/assets/calc.js"></script>
+<script src="/assets/ui.js"></script>
+</body>
+</html>

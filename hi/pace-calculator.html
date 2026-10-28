@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>पेस कैलकुलेटर: दौड़, पैदल चलना और साइकिलिंग | Let's Count</title>
+<meta name="description" content="मुफ़्त पेस कैलकुलेटर: दूरी और समय से प्रति किमी या मील गति, रफ़्तार और स्प्लिट समय जानें, या लक्ष्य गति से पूरा करने का समय निकालें।">
+<link rel="canonical" href="https://letscount.example/hi/pace-calculator">
+<link rel="alternate" hreflang="en" href="https://letscount.example/pace-calculator">
+<link rel="alternate" hreflang="hi" href="https://letscount.example/hi/pace-calculator">
+<link rel="alternate" hreflang="x-default" href="https://letscount.example/pace-calculator">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#1d4ed8">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Let's Count">
+<meta property="og:title" content="पेस कैलकुलेटर: दौड़, पैदल चलना और साइकिलिंग">
+<meta property="og:description" content="दूरी और समय से गति, रफ़्तार और स्प्लिट समय जानें।">
+<meta property="og:url" content="https://letscount.example/hi/pace-calculator">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"पेस कैलकुलेटर","url":"https://letscount.example/hi/pace-calculator","description":"दूरी और समय से प्रति किलोमीटर या मील गति, औसत रफ़्तार और स्प्लिट समय निकालता है, या दूरी और गति से पूरा करने का समय बताता है।","applicationCategory":"HealthApplication","operatingSystem":"Any (web browser)","inLanguage":"hi","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://letscount.example/hi"},{"@type":"ListItem","position":2,"name":"पेस कैलकुलेटर","item":"https://letscount.example/hi/pace-calculator"}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"मैं अपनी दौड़ की गति (पेस) कैसे निकालूँ?","acceptedAnswer":{"@type":"Answer","text":"अपने कुल समय को दूरी से भाग दें। उदाहरण के लिए, 10 किमी के 55 मिनट का मतलब 55 ÷ 10 = 5.5 मिनट प्रति किमी, यानी 5:30 प्रति किमी।"}},
+{"@type":"Question","name":"मिनट प्रति किमी को मिनट प्रति मील में कैसे बदलें?","acceptedAnswer":{"@type":"Answer","text":"प्रति किमी गति को सेकंड में बदलकर 1.609344 से गुणा करें। 5:30 प्रति किमी यानी 330 सेकंड, और 330 × 1.609344 ≈ 531 सेकंड, जो लगभग 8:51 प्रति मील है।"}},
+{"@type":"Question","name":"शुरुआत करने वाले के लिए अच्छी गति क्या है?","acceptedAnswer":{"@type":"Answer","text":"कोई एक अच्छी गति नहीं होती। कई शुरुआती लोग लगभग 7 से 10 मिनट प्रति किमी के बीच दौड़ते हैं, पर उम्र, फिटनेस और मौसम सब मायने रखते हैं। शुरुआत के लिए ऐसी गति ठीक है जिसमें आप पूरे वाक्य बोल सकें।"}},
+{"@type":"Question","name":"मेरी घड़ी या ऐप में औसत गति अलग क्यों दिखती है?","acceptedAnswer":{"@type":"Answer","text":"कई ऐप चलने की गति (मूविंग पेस) दिखाते हैं, जिसमें रुके हुए समय को छोड़ दिया जाता है, जबकि यह कैलकुलेटर आपके डाले हुए कुल समय का उपयोग करता है। GPS की दूरी भी आधिकारिक दौड़ की दूरी से थोड़ी अलग हो सकती है।"}}
+]}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">मुख्य सामग्री पर जाएँ</a>
+<header class="site-header"><div class="wrap bar">
+<a class="brand" href="/hi"><img src="/assets/favicon.svg" alt="" width="34" height="34"><span>Let's Count</span></a>
+<nav class="site-nav" aria-label="मुख्य मेनू"><ul>
+<li><a href="/hi/pace-calculator" aria-current="page">गति (पेस)</a></li>
+<li><a href="/hi/race-time-predictor">रेस का समय</a></li>
+<li><a href="/hi/calories-burned-calculator">कैलोरी</a></li>
+<li><a href="/hi/weekly-training-planner">ट्रेनिंग प्लान</a></li>
+<li><a href="/hi/heart-rate-zone-calculator">हृदय गति ज़ोन</a></li>
+<li><a href="/hi/about">हमारे बारे में</a></li>
+</ul></nav>
+<a class="lang" href="/pace-calculator" hreflang="en" lang="en">English</a>
+</div></header>
+
+<main id="main" class="wrap">
+<p class="crumbs"><a href="/hi">होम</a> › पेस कैलकुलेटर</p>
+<h1>पेस कैलकुलेटर: दौड़ने, पैदल चलने और साइकिल चलाने के लिए</h1>
+<p class="lead">मुफ़्त। दूरी और अपना समय डालें और प्रति किलोमीटर या मील गति, औसत रफ़्तार और स्प्लिट समय देखें। या दूरी और लक्ष्य गति डालकर पूरा करने का समय जानें।</p>
+
+<div class="calc">
+<div class="panel">
+<h2>अपने आँकड़े डालें</h2>
+<form id="calc-form" data-calc="pace" novalidate>
+<div class="field"><span class="label" id="u-lab">इकाई</span>
+<div class="seg" role="radiogroup" aria-labelledby="u-lab">
+<label><input type="radio" name="units" id="u-km" value="km" checked><span>किमी</span></label>
+<label><input type="radio" name="units" id="u-mi" value="mi"><span>मील</span></label>
+</div></div>
+<div class="field"><label for="mode">आप क्या जानते हैं?</label>
+<select id="mode" name="mode"><option value="time">दूरी और समय: मेरी गति निकालें</option><option value="pace">दूरी और गति: मेरा समय निकालें</option></select></div>
+<div class="field"><label for="distance">दूरी (<span data-unit-text>किमी</span>)</label>
+<input type="text" id="distance" inputmode="decimal" autocomplete="off" placeholder="जैसे 10" data-field="distance" data-label="दूरी">
+<div class="quick" role="group" aria-label="आम दूरियाँ">
+<button type="button" class="chip" data-km="5">5K</button><button type="button" class="chip" data-km="10">10K</button><button type="button" class="chip" data-km="21.0975">हाफ मैराथन</button><button type="button" class="chip" data-km="42.195">मैराथन</button>
+</div></div>
+<div class="field" data-show-mode="time"><span class="label" id="t-lab">लगा हुआ समय</span>
+<div class="time" role="group" aria-labelledby="t-lab">
+<div><label for="t-h">घंटे</label><input type="text" id="t-h" inputmode="numeric" autocomplete="off" placeholder="0" data-field="time" data-label="समय"></div>
+<div><label for="t-m">मिनट</label><input type="text" id="t-m" inputmode="numeric" autocomplete="off" placeholder="55" data-field="time" data-label="समय"></div>
+<div><label for="t-s">सेकंड</label><input type="text" id="t-s" inputmode="decimal" autocomplete="off" placeholder="0" data-field="time" data-label="समय"></div>
+</div></div>
+<div class="field" data-show-mode="pace" hidden><span class="label" id="p-lab">प्रति <span data-unit-text>किमी</span> गति</span>
+<div class="row2" role="group" aria-labelledby="p-lab">
+<div><label for="p-m">मिनट</label><input type="text" id="p-m" inputmode="numeric" autocomplete="off" placeholder="5" data-field="pace" data-label="गति"></div>
+<div><label for="p-s">सेकंड</label><input type="text" id="p-s" inputmode="decimal" autocomplete="off" placeholder="30" data-field="pace" data-label="गति"></div>
+</div></div>
+<div class="actions">
+<button class="btn btn-primary" type="submit">गणना करें</button>
+<button class="btn btn-ghost" type="reset">रीसेट</button>
+<button class="btn btn-ghost" type="button" data-example='{"distance":"10","t-m":"55"}'>उदाहरण आज़माएँ</button>
+</div>
+</form>
+</div>
+<div class="panel"><div id="result" aria-live="polite"><h2>आपका परिणाम</h2><p class="placeholder">अपने आँकड़े डालें और "गणना करें" दबाएँ। आपका परिणाम और उपयोग की गई मान्यताएँ यहाँ दिखेंगी।</p></div></div>
+</div>
+
+<div class="content">
+<h2>यह कैलकुलेटर क्या करता है</h2>
+<p>पेस वह समय है जो आप एक किलोमीटर या एक मील तय करने में लेते हैं। रफ़्तार वह दूरी है जो आप एक घंटे में तय करते हैं। दौड़ने और पैदल चलने वाले आमतौर पर पेस की बात करते हैं और साइकिल चलाने वाले रफ़्तार की, इसलिए यह पेज दोनों दिखाता है। यह स्प्लिट समय की तालिका भी देता है, ताकि आप देख सकें कि एक समान गति रखने पर हर किलोमीटर या मील पर आप कहाँ होंगे।</p>
+
+<h2>गणना कैसे होती है</h2>
+<p class="formula">पेस = कुल समय ÷ दूरी<br>रफ़्तार = दूरी ÷ कुल समय (घंटों में)<br>पूरा करने का समय = पेस × दूरी<br>1 मील = 1.609344 किमी</p>
+<p>कैलकुलेटर आपके समय को सेकंड में बदलता है, दूरी से भाग देता है और उत्तर मिनट और सेकंड में दिखाता है। दूसरी इकाई के लिए 1.609344 से गुणा या भाग किया जाता है। स्प्लिट समय यह मानते हैं कि आप कभी तेज़ या धीमे नहीं होते।</p>
+
+<h2>हल किया हुआ उदाहरण</h2>
+<p>कोई व्यक्ति 10 किमी की दौड़ 55 मिनट में पूरी करता है। कुल समय 55 × 60 = 3,300 सेकंड है। पेस 3,300 ÷ 10 = 330 सेकंड प्रति किमी है, यानी <strong>5:30 प्रति किमी</strong>। रफ़्तार 10 ÷ (55 ÷ 60) = <strong>10.9 किमी/घंटा</strong> है। मील में 330 × 1.609344 ≈ 531 सेकंड, यानी लगभग <strong>8:51 प्रति मील</strong>। एक समान गति पर वे 5 किमी 27:30 पर पार करेंगे। पूरी स्प्लिट तालिका देखने के लिए ऊपर "उदाहरण आज़माएँ" दबाएँ।</p>
+
+<h2>सीमाएँ</h2>
+<ul>
+<li>कैलकुलेटर मानता है कि गति एक समान रहती है। असली दौड़ में चढ़ाई, रुकना, ट्रैफ़िक सिग्नल और थकान होती है, इसलिए आपके अपने किलोमीटर अलग-अलग होंगे।</li>
+<li>परिणाम उतना ही सही है जितना आपका डाला हुआ समय और दूरी। GPS की दूरी नापे हुए रास्ते से थोड़ी अलग हो सकती है।</li>
+<li>वास्तविक सीमा से बाहर की प्रविष्टियाँ (1:00 से तेज़ या 20:00 प्रति किमी से धीमी गति) टाइपिंग की संभावित गलती मानकर अस्वीकार की जाती हैं।</li>
+<li>यह एक सत्र की मेहनत बताता है। यह नहीं बताता कि कोई गति आपकी सेहत या फिटनेस के लिए सही है या नहीं।</li>
+</ul>
+
+<h2>आम सवाल</h2>
+<details class="faq"><summary>मैं अपनी दौड़ की गति (पेस) कैसे निकालूँ?</summary><div><p>अपने कुल समय को दूरी से भाग दें। उदाहरण के लिए, 10 किमी के 55 मिनट का मतलब 55 ÷ 10 = 5.5 मिनट प्रति किमी, यानी 5:30 प्रति किमी।</p></div></details>
+<details class="faq"><summary>मिनट प्रति किमी को मिनट प्रति मील में कैसे बदलें?</summary><div><p>प्रति किमी गति को सेकंड में बदलकर 1.609344 से गुणा करें। 5:30 प्रति किमी यानी 330 सेकंड, और 330 × 1.609344 ≈ 531 सेकंड, जो लगभग 8:51 प्रति मील है।</p></div></details>
+<details class="faq"><summary>शुरुआत करने वाले के लिए अच्छी गति क्या है?</summary><div><p>कोई एक अच्छी गति नहीं होती। कई शुरुआती लोग लगभग 7 से 10 मिनट प्रति किमी के बीच दौड़ते हैं, पर उम्र, फिटनेस और मौसम सब मायने रखते हैं। शुरुआत के लिए ऐसी गति ठीक है जिसमें आप पूरे वाक्य बोल सकें।</p></div></details>
+<details class="faq"><summary>मेरी घड़ी या ऐप में औसत गति अलग क्यों दिखती है?</summary><div><p>कई ऐप चलने की गति (मूविंग पेस) दिखाते हैं, जिसमें रुके हुए समय को छोड़ दिया जाता है, जबकि यह कैलकुलेटर आपके डाले हुए कुल समय का उपयोग करता है। GPS की दूरी भी आधिकारिक दौड़ की दूरी से थोड़ी अलग हो सकती है।</p></div></details>
+
+<h2>संबंधित कैलकुलेटर</h2>
+<ul class="related">
+<li><a href="/hi/race-time-predictor">रेस टाइम प्रेडिक्टर</a></li>
+<li><a href="/hi/heart-rate-zone-calculator">हृदय गति ज़ोन कैलकुलेटर</a></li>
+<li><a href="/hi/weekly-training-planner">साप्ताहिक ट्रेनिंग प्लानर</a></li>
+<li><a href="/hi/calories-burned-calculator">कैलोरी बर्न कैलकुलेटर</a></li>
+</ul>
+<p class="updated">अंतिम समीक्षा: 28 अक्टूबर 2026। परिणाम योजना के लिए अनुमान हैं, गारंटी नहीं।</p>
+</div>
+</main>
+<script src="/assets/calc.js"></script>
+<script src="/assets/ui.js"></script>
+</body>
+</html>

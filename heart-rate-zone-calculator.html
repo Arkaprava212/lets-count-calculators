@@ -1,0 +1,111 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Heart Rate Zone Calculator by Age | Let's Count</title>
+<meta name="description" content="Estimate your maximum heart rate and five training zones from your age, with an optional resting heart rate. Free, with formulas and limits explained.">
+<link rel="canonical" href="https://letscount.example/heart-rate-zone-calculator">
+<link rel="alternate" hreflang="en" href="https://letscount.example/heart-rate-zone-calculator">
+<link rel="alternate" hreflang="hi" href="https://letscount.example/hi/heart-rate-zone-calculator">
+<link rel="alternate" hreflang="x-default" href="https://letscount.example/heart-rate-zone-calculator">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#1d4ed8">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Let's Count">
+<meta property="og:title" content="Heart Rate Zone Calculator by Age">
+<meta property="og:description" content="Estimate your maximum heart rate and five training zones from your age.">
+<meta property="og:url" content="https://letscount.example/heart-rate-zone-calculator">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Heart Rate Zone Calculator","url":"https://letscount.example/heart-rate-zone-calculator","description":"Estimates maximum heart rate from age and divides it into five training zones, optionally using resting heart rate.","applicationCategory":"HealthApplication","operatingSystem":"Any (web browser)","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://letscount.example/"},{"@type":"ListItem","position":2,"name":"Heart Rate Zone Calculator","item":"https://letscount.example/heart-rate-zone-calculator"}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"How do I find my maximum heart rate?","acceptedAnswer":{"@type":"Answer","text":"The only accurate ways are a supervised stress test or a very hard, safe effort measured by a heart rate monitor. For most people, a formula based on age is a reasonable starting estimate, but your own maximum can differ by 10 beats per minute or more."}},
+{"@type":"Question","name":"Which formula should I choose, Tanaka or 220 minus age?","acceptedAnswer":{"@type":"Answer","text":"Both are averages from groups of people. The Tanaka formula (208 − 0.7 × age) was built from a larger set of studies and tends to fit adults over 40 better than 220 − age, so it is the default here."}},
+{"@type":"Question","name":"Which zone is best for beginners?","acceptedAnswer":{"@type":"Answer","text":"Most of a beginner's sessions are usually done at an easy effort, around Zone 2, where you can speak in full sentences. Harder zones are used sparingly. If you are unsure, start easy and build up."}},
+{"@type":"Question","name":"Do medicines or health conditions change these zones?","acceptedAnswer":{"@type":"Answer","text":"Yes. Some medicines, such as beta-blockers, lower heart rate, and some heart conditions need special limits. If you take regular medicine or have a heart, blood pressure or other health condition, ask your doctor which heart rate range is safe for you."}}
+]}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap bar">
+<a class="brand" href="/"><img src="/assets/favicon.svg" alt="" width="34" height="34"><span>Let's Count</span></a>
+<nav class="site-nav" aria-label="Main"><ul>
+<li><a href="/pace-calculator">Pace</a></li>
+<li><a href="/race-time-predictor">Race times</a></li>
+<li><a href="/calories-burned-calculator">Calories</a></li>
+<li><a href="/weekly-training-planner">Training plan</a></li>
+<li><a href="/heart-rate-zone-calculator" aria-current="page">Heart-rate zones</a></li>
+<li><a href="/about">About</a></li>
+</ul></nav>
+<a class="lang" href="/hi/heart-rate-zone-calculator" hreflang="hi" lang="hi">हिन्दी</a>
+</div></header>
+
+<main id="main" class="wrap">
+<p class="crumbs"><a href="/">Home</a> › Heart Rate Zone Calculator</p>
+<h1>Heart Rate Zone Calculator by Age</h1>
+<p class="lead">Free to use. Enter your age to see an estimate of your maximum heart rate and five training zones, from very easy to very hard. If you know your resting heart rate, add it for zones that are more personal.</p>
+
+<div class="calc">
+<div class="panel">
+<h2>Enter your details</h2>
+<form id="calc-form" data-calc="hr" novalidate>
+<div class="field"><label for="age">Your age (years)</label>
+<input type="text" id="age" inputmode="numeric" autocomplete="off" placeholder="for example 30" data-field="age" data-label="Age"></div>
+<div class="field"><label for="resting">Resting heart rate (beats per minute) <span class="hint">Optional. Measure it when you wake up, before getting out of bed.</span></label>
+<input type="text" id="resting" inputmode="numeric" autocomplete="off" placeholder="for example 60" data-field="resting" data-label="Resting heart rate"></div>
+<div class="field"><label for="method">Formula for maximum heart rate</label>
+<select id="method" name="method"><option value="tanaka" selected>Tanaka: 208 − 0.7 × age (recommended)</option><option value="classic">Classic: 220 − age</option></select></div>
+<div class="actions">
+<button class="btn btn-primary" type="submit">Calculate</button>
+<button class="btn btn-ghost" type="reset">Reset</button>
+<button class="btn btn-ghost" type="button" data-example='{"age":"30"}'>Try an example</button>
+</div>
+</form>
+</div>
+<div class="panel"><div id="result" aria-live="polite"><h2>Your result</h2><p class="placeholder">Enter your age and press Calculate. Your zones and the assumptions used will appear here.</p></div></div>
+</div>
+
+<div class="content">
+<h2>What this calculator does</h2>
+<p>Training zones are ranges of heart rate that match different levels of effort. Easy zones build endurance and help recovery, and hard zones are used in short, planned doses. Without a lab test, the usual way to set zones is to estimate your maximum heart rate from your age and take percentages of it. This calculator does that for you.</p>
+
+<h2>How it is calculated</h2>
+<p class="formula">Maximum heart rate (Tanaka) = 208 − 0.7 × age<br>Maximum heart rate (classic) = 220 − age<br>Without resting heart rate: zone = % × maximum<br>With resting heart rate: zone = resting + % × (maximum − resting)</p>
+<p>The five zones use 50–60%, 60–70%, 70–80%, 80–90% and 90–100%. The second method with a resting heart rate is called the Karvonen method, or heart rate reserve. It usually gives higher zones for fit people with a low resting heart rate.</p>
+
+<h2>Worked example</h2>
+<p>A 30-year-old uses the Tanaka formula: 208 − 0.7 × 30 = 187 beats per minute. With no resting heart rate, Zone 2 (60–70%) is 0.6 × 187 ≈ 112 to 0.7 × 187 ≈ 131 beats per minute. If their resting heart rate is 60, the reserve is 187 − 60 = 127, and Zone 2 becomes 60 + 0.6 × 127 ≈ 136 to 60 + 0.7 × 127 ≈ 149. Press "Try an example" above to see all five zones.</p>
+
+<h2>Limitations</h2>
+<ul>
+<li>A formula is an average. Your real maximum can be 10 beats per minute or more higher or lower.</li>
+<li>Heart rate changes with heat, stress, caffeine, sleep, illness, altitude and some medicines.</li>
+<li>The zones are a guide for effort, not a prescription. How you feel and whether you can talk are also useful checks.</li>
+<li>The calculator accepts ages 10 to 100 and resting heart rates between 30 and 120 beats per minute, and rejects values outside these ranges.</li>
+<li>It is not medical advice. If you have a heart or health condition, or feel chest pain or dizziness during exercise, stop and see a doctor.</li>
+</ul>
+
+<h2>Common questions</h2>
+<details class="faq"><summary>How do I find my maximum heart rate?</summary><div><p>The only accurate ways are a supervised stress test or a very hard, safe effort measured by a heart rate monitor. For most people, a formula based on age is a reasonable starting estimate, but your own maximum can differ by 10 beats per minute or more.</p></div></details>
+<details class="faq"><summary>Which formula should I choose, Tanaka or 220 minus age?</summary><div><p>Both are averages from groups of people. The Tanaka formula (208 − 0.7 × age) was built from a larger set of studies and tends to fit adults over 40 better than 220 − age, so it is the default here.</p></div></details>
+<details class="faq"><summary>Which zone is best for beginners?</summary><div><p>Most of a beginner's sessions are usually done at an easy effort, around Zone 2, where you can speak in full sentences. Harder zones are used sparingly. If you are unsure, start easy and build up.</p></div></details>
+<details class="faq"><summary>Do medicines or health conditions change these zones?</summary><div><p>Yes. Some medicines, such as beta-blockers, lower heart rate, and some heart conditions need special limits. If you take regular medicine or have a heart, blood pressure or other health condition, ask your doctor which heart rate range is safe for you.</p></div></details>
+
+<h2>Related calculators</h2>
+<ul class="related">
+<li><a href="/pace-calculator">Pace Calculator</a></li>
+<li><a href="/weekly-training-planner">Weekly Training Planner</a></li>
+<li><a href="/calories-burned-calculator">Calories Burned Calculator</a></li>
+<li><a href="/race-time-predictor">Race Time Predictor</a></li>
+</ul>
+<p class="updated">Last reviewed: 28 October 2026. Results are estimates for planning, not guarantees.</p>
+</div>
+</main>
+<script src="/assets/calc.js"></script>
+<script src="/assets/ui.js"></script>
+</body>
+</html>

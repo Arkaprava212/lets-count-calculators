@@ -1,0 +1,127 @@
+<!doctype html>
+<html lang="hi">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>कैलोरी बर्न कैलकुलेटर: दौड़, वॉक या साइकिल | Let's Count</title>
+<meta name="description" content="अपने वज़न, समय और दूरी से दौड़ने, पैदल चलने या साइकिल चलाने में खर्च हुई कैलोरी का अनुमान लगाएँ। मुफ़्त, MET विधि और सीमाएँ समझाई गई हैं।">
+<link rel="canonical" href="https://letscount.example/hi/calories-burned-calculator">
+<link rel="alternate" hreflang="en" href="https://letscount.example/calories-burned-calculator">
+<link rel="alternate" hreflang="hi" href="https://letscount.example/hi/calories-burned-calculator">
+<link rel="alternate" hreflang="x-default" href="https://letscount.example/calories-burned-calculator">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#1d4ed8">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Let's Count">
+<meta property="og:title" content="कैलोरी बर्न कैलकुलेटर: दौड़, वॉक या साइकिल">
+<meta property="og:description" content="अपने वज़न, समय और दूरी से खर्च हुई कैलोरी का अनुमान लगाएँ।">
+<meta property="og:url" content="https://letscount.example/hi/calories-burned-calculator">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"कैलोरी बर्न कैलकुलेटर","url":"https://letscount.example/hi/calories-burned-calculator","description":"शरीर के वज़न, समय और वैकल्पिक दूरी से MET मानों द्वारा दौड़ने, पैदल चलने या साइकिल चलाने में खर्च हुई कैलोरी का अनुमान लगाता है।","applicationCategory":"HealthApplication","operatingSystem":"Any (web browser)","inLanguage":"hi","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"होम","item":"https://letscount.example/hi"},{"@type":"ListItem","position":2,"name":"कैलोरी बर्न कैलकुलेटर","item":"https://letscount.example/hi/calories-burned-calculator"}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"5 किमी दौड़ने में कितनी कैलोरी खर्च होती हैं?","acceptedAnswer":{"@type":"Answer","text":"एक आम अंगूठा-नियम है कि दौड़ने पर हर किलोमीटर पर शरीर के हर किलो वज़न पर लगभग 1 किलोकैलोरी खर्च होती है, यानी 70 किग्रा के व्यक्ति के लिए 5 किमी में लगभग 350 किलोकैलोरी। कैलकुलेटर भी इसी के आसपास उत्तर देता है और आपकी रफ़्तार के हिसाब से उसे बदलता है।"}},
+{"@type":"Question","name":"मेरी घड़ी में संख्या अलग क्यों दिखती है?","acceptedAnswer":{"@type":"Answer","text":"घड़ियाँ अपने सूत्र इस्तेमाल करती हैं, जो अक्सर हृदय गति, उम्र और लिंग पर आधारित होते हैं। एक ही वर्कआउट के लिए दो टूल 20% या उससे ज़्यादा अलग आँकड़े दे सकते हैं, और कोई भी बिल्कुल सटीक नहीं है।"}},
+{"@type":"Question","name":"क्या पैदल चलने में दौड़ने से कम कैलोरी खर्च होती हैं?","acceptedAnswer":{"@type":"Answer","text":"प्रति घंटे के हिसाब से हाँ। प्रति किलोमीटर के हिसाब से अंतर कम होता है, क्योंकि उतनी ही दूरी पैदल चलने में ज़्यादा समय लगता है। एक ही दूरी हर गतिविधि के साथ आज़माकर आप दोनों की तुलना कर सकते हैं।"}},
+{"@type":"Question","name":"क्या मुझे यहाँ दिखी कैलोरी वापस खा लेनी चाहिए?","acceptedAnswer":{"@type":"Answer","text":"यह टूल नहीं बता सकता कि आपको कितना खाना चाहिए। यह सिर्फ़ एक सत्र में खर्च हुई ऊर्जा का मोटा अनुमान देता है। वज़न या खान-पान के लक्ष्यों के लिए डॉक्टर या रजिस्टर्ड डाइटीशियन से बात करें।"}}
+]}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">मुख्य सामग्री पर जाएँ</a>
+<header class="site-header"><div class="wrap bar">
+<a class="brand" href="/hi"><img src="/assets/favicon.svg" alt="" width="34" height="34"><span>Let's Count</span></a>
+<nav class="site-nav" aria-label="मुख्य मेनू"><ul>
+<li><a href="/hi/pace-calculator">गति (पेस)</a></li>
+<li><a href="/hi/race-time-predictor">रेस का समय</a></li>
+<li><a href="/hi/calories-burned-calculator" aria-current="page">कैलोरी</a></li>
+<li><a href="/hi/weekly-training-planner">ट्रेनिंग प्लान</a></li>
+<li><a href="/hi/heart-rate-zone-calculator">हृदय गति ज़ोन</a></li>
+<li><a href="/hi/about">हमारे बारे में</a></li>
+</ul></nav>
+<a class="lang" href="/calories-burned-calculator" hreflang="en" lang="en">English</a>
+</div></header>
+
+<main id="main" class="wrap">
+<p class="crumbs"><a href="/hi">होम</a> › कैलोरी बर्न कैलकुलेटर</p>
+<h1>कैलोरी बर्न कैलकुलेटर: दौड़ने, पैदल चलने और साइकिल चलाने के लिए</h1>
+<p class="lead">मुफ़्त। गतिविधि चुनें, अपना वज़न और बिताया हुआ समय डालें और खर्च हुई कैलोरी का अनुमान पाएँ। दूरी जोड़ने से अनुमान बेहतर होता है।</p>
+
+<div class="calc">
+<div class="panel">
+<h2>अपना वर्कआउट डालें</h2>
+<form id="calc-form" data-calc="calories" novalidate>
+<div class="field"><label for="activity">गतिविधि</label>
+<select id="activity" name="activity"><option value="run">दौड़ना</option><option value="walk">पैदल चलना</option><option value="cycle">साइकिल चलाना</option></select></div>
+<div class="field"><span class="label" id="w-lab">वज़न की इकाई</span>
+<div class="seg" role="radiogroup" aria-labelledby="w-lab">
+<label><input type="radio" name="wunits" id="w-kg" value="kg" checked><span>किग्रा</span></label>
+<label><input type="radio" name="wunits" id="w-lb" value="lb"><span>पाउंड</span></label>
+</div></div>
+<div class="field"><label for="weight">आपका वज़न (<span data-weight-text>किग्रा</span>)</label>
+<input type="text" id="weight" inputmode="decimal" autocomplete="off" placeholder="जैसे 70" data-field="weight" data-label="वज़न"></div>
+<div class="field"><span class="label" id="t-lab">बिताया हुआ समय</span>
+<div class="time" role="group" aria-labelledby="t-lab">
+<div><label for="t-h">घंटे</label><input type="text" id="t-h" inputmode="numeric" autocomplete="off" placeholder="0" data-field="time" data-label="समय"></div>
+<div><label for="t-m">मिनट</label><input type="text" id="t-m" inputmode="numeric" autocomplete="off" placeholder="30" data-field="time" data-label="समय"></div>
+<div><label for="t-s">सेकंड</label><input type="text" id="t-s" inputmode="decimal" autocomplete="off" placeholder="0" data-field="time" data-label="समय"></div>
+</div></div>
+<div class="field"><span class="label" id="u-lab">दूरी की इकाई</span>
+<div class="seg" role="radiogroup" aria-labelledby="u-lab">
+<label><input type="radio" name="units" id="u-km" value="km" checked><span>किमी</span></label>
+<label><input type="radio" name="units" id="u-mi" value="mi"><span>मील</span></label>
+</div></div>
+<div class="field"><label for="distance">दूरी (<span data-unit-text>किमी</span>) <span class="hint">वैकल्पिक। पता न हो तो खाली छोड़ें।</span></label>
+<input type="text" id="distance" inputmode="decimal" autocomplete="off" placeholder="जैसे 5" data-field="distance" data-label="दूरी"></div>
+<div class="actions">
+<button class="btn btn-primary" type="submit">गणना करें</button>
+<button class="btn btn-ghost" type="reset">रीसेट</button>
+<button class="btn btn-ghost" type="button" data-example='{"activity":"run","weight":"70","t-m":"30","distance":"5"}'>उदाहरण आज़माएँ</button>
+</div>
+</form>
+</div>
+<div class="panel"><div id="result" aria-live="polite"><h2>आपका परिणाम</h2><p class="placeholder">अपना वर्कआउट डालें और "गणना करें" दबाएँ। आपका अनुमान और उपयोग की गई मान्यताएँ यहाँ दिखेंगी।</p></div></div>
+</div>
+
+<div class="content">
+<h2>यह कैलकुलेटर क्या करता है</h2>
+<p>यह अनुमान लगाता है कि एक दौड़, वॉक या राइड में आपने कितनी ऊर्जा खर्च की। ऊर्जा किलोकैलोरी (kcal) में दिखाई जाती है, जिसे ज़्यादातर लोग सीधे "कैलोरी" कहते हैं। अनुमान आपके शरीर के वज़न, चलने के समय और रफ़्तार पर निर्भर करता है।</p>
+
+<h2>गणना कैसे होती है</h2>
+<p class="formula">कैलोरी = MET × शरीर का वज़न (किग्रा) × समय (घंटे)<br>औसत रफ़्तार = दूरी ÷ समय</p>
+<p>MET का मतलब मेटाबॉलिक इक्विवेलेंट है। एक MET वह ऊर्जा है जो आप शांत बैठे हुए खर्च करते हैं, और ज़्यादा मेहनत वाली गतिविधि का मान बड़ा होता है। आपकी औसत रफ़्तार तय करती है कि कौन-सा MET मान लिया जाए, जो "कंपेंडियम ऑफ़ फिज़िकल एक्टिविटीज़" नाम की सार्वजनिक शोध तालिका से लिया गया है। दौड़ने और पैदल चलने में प्रकाशित रफ़्तारों के बीच के मान अनुमान से निकाले जाते हैं। अगर आप दूरी खाली छोड़ते हैं, तो एक सामान्य मान लिया जाता है: दौड़ने के लिए 9.8, पैदल चलने के लिए 3.5 और साइकिल के लिए 8.0।</p>
+
+<h2>हल किया हुआ उदाहरण</h2>
+<p>70 किग्रा वज़न का एक व्यक्ति 5 किमी 30 मिनट में दौड़ता है। औसत रफ़्तार 5 ÷ 0.5 = 10 किमी/घंटा है, जिसका MET मान लगभग 10.0 है। समय 0.5 घंटे है। कैलोरी = 10.0 × 70 × 0.5 ≈ <strong>350 किलोकैलोरी</strong>। पेज इसे गोल अनुमान और उदाहरण के लिए एक दायरे के साथ दिखाता है। इसे देखने के लिए ऊपर "उदाहरण आज़माएँ" दबाएँ।</p>
+
+<h2>सीमाएँ</h2>
+<ul>
+<li>यह एक औसत व्यक्ति के लिए अनुमान है। फिटनेस, उम्र, लिंग, शरीर की बनावट, रास्ता, हवा और दौड़ने का तरीका असली मान बदल देते हैं।</li>
+<li>इस आँकड़े में वह ऊर्जा भी शामिल है जो शरीर उस समय आराम में भी खर्च करता, इसलिए यह सिर्फ़ व्यायाम से बढ़ी हुई कैलोरी से ज़्यादा है।</li>
+<li>दिखाया गया दायरा उदाहरण के लिए है। यह मापी गई त्रुटि सीमा नहीं है।</li>
+<li>जिस दूरी और समय से गतिविधि की सामान्य रफ़्तार सीमा (जैसे दौड़ने में 25 किमी/घंटा से ज़्यादा) से बाहर रफ़्तार आती है, वह टाइपिंग की संभावित गलती मानकर अस्वीकार की जाती है।</li>
+<li>यह चिकित्सा या खान-पान की सलाह नहीं है।</li>
+</ul>
+
+<h2>आम सवाल</h2>
+<details class="faq"><summary>5 किमी दौड़ने में कितनी कैलोरी खर्च होती हैं?</summary><div><p>एक आम अंगूठा-नियम है कि दौड़ने पर हर किलोमीटर पर शरीर के हर किलो वज़न पर लगभग 1 किलोकैलोरी खर्च होती है, यानी 70 किग्रा के व्यक्ति के लिए 5 किमी में लगभग 350 किलोकैलोरी। कैलकुलेटर भी इसी के आसपास उत्तर देता है और आपकी रफ़्तार के हिसाब से उसे बदलता है।</p></div></details>
+<details class="faq"><summary>मेरी घड़ी में संख्या अलग क्यों दिखती है?</summary><div><p>घड़ियाँ अपने सूत्र इस्तेमाल करती हैं, जो अक्सर हृदय गति, उम्र और लिंग पर आधारित होते हैं। एक ही वर्कआउट के लिए दो टूल 20% या उससे ज़्यादा अलग आँकड़े दे सकते हैं, और कोई भी बिल्कुल सटीक नहीं है।</p></div></details>
+<details class="faq"><summary>क्या पैदल चलने में दौड़ने से कम कैलोरी खर्च होती हैं?</summary><div><p>प्रति घंटे के हिसाब से हाँ। प्रति किलोमीटर के हिसाब से अंतर कम होता है, क्योंकि उतनी ही दूरी पैदल चलने में ज़्यादा समय लगता है। एक ही दूरी हर गतिविधि के साथ आज़माकर आप दोनों की तुलना कर सकते हैं।</p></div></details>
+<details class="faq"><summary>क्या मुझे यहाँ दिखी कैलोरी वापस खा लेनी चाहिए?</summary><div><p>यह टूल नहीं बता सकता कि आपको कितना खाना चाहिए। यह सिर्फ़ एक सत्र में खर्च हुई ऊर्जा का मोटा अनुमान देता है। वज़न या खान-पान के लक्ष्यों के लिए डॉक्टर या रजिस्टर्ड डाइटीशियन से बात करें।</p></div></details>
+
+<h2>संबंधित कैलकुलेटर</h2>
+<ul class="related">
+<li><a href="/hi/pace-calculator">पेस कैलकुलेटर</a></li>
+<li><a href="/hi/heart-rate-zone-calculator">हृदय गति ज़ोन कैलकुलेटर</a></li>
+<li><a href="/hi/weekly-training-planner">साप्ताहिक ट्रेनिंग प्लानर</a></li>
+<li><a href="/hi/race-time-predictor">रेस टाइम प्रेडिक्टर</a></li>
+</ul>
+<p class="updated">अंतिम समीक्षा: 28 अक्टूबर 2026। परिणाम योजना के लिए अनुमान हैं, गारंटी नहीं।</p>
+</div>
+</main>
+<script src="/assets/calc.js"></script>
+<script src="/assets/ui.js"></script>
+</body>
+</html>

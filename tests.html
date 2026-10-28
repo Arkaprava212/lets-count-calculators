@@ -1,0 +1,106 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<meta name="robots" content="noindex">
+<title>Calculator self-checks</title>
+<style>body{font:15px/1.5 system-ui,sans-serif;max-width:720px;margin:24px auto;padding:0 16px}.ok{color:#0a7d33}.bad{color:#b00020;font-weight:700}</style>
+</head>
+<body>
+<h1>Calculator self-checks</h1>
+<p>Open this page to re-check the maths after any change. Every line should be green. Summary: <b id="sum">…</b></p>
+<ul id="out"></ul>
+<script src="/assets/calc.js"></script>
+<script>
+(function () {
+  var C = window.Calc, pass = 0, fail = 0, out = document.getElementById('out');
+  function check(name, actual, expected, tol) {
+    var ok = typeof expected === 'number' ? Math.abs(actual - expected) <= (tol || 0) : actual === expected;
+    ok ? pass++ : fail++;
+    var li = document.createElement('li'); li.className = ok ? 'ok' : 'bad';
+    li.textContent = (ok ? 'PASS ' : 'FAIL ') + name + ' -> ' + actual + (ok ? '' : ' (expected ' + expected + ')');
+    out.appendChild(li);
+  }
+  // parsing
+  check('parse 5', C.parseNum('5'), 5);
+  check('parse 5,5', C.parseNum('5,5'), 5.5);
+  check('parse blank', isNaN(C.parseNum('')), true);
+  check('parse negative', isNaN(C.parseNum('-3')), true);
+  check('parse letters', isNaN(C.parseNum('abc')), true);
+  check('parse 1,000.5 rejected', isNaN(C.parseNum('1,000.5')), true);
+  check('hms 0:55:00', C.parseHMS('', '55', '').seconds, 3300);
+  check('hms 75 minutes accepted', C.parseHMS('0', '75', '0').seconds, 4500);
+  check('hms 75 seconds rejected', C.parseHMS('0', '1', '75').error, 'time_format');
+  check('hms all blank', C.parseHMS('', '', '').error, 'time_missing');
+  check('hms letters', C.parseHMS('x', '', '').error, 'time_invalid');
+  check('format 3725', C.fmtDuration(3725), '1:02:05');
+  check('format 330', C.fmtDuration(330), '5:30');
+  // pace: 10 km in 55:00
+  var p = C.paceFromTime(10, 3300);
+  check('pace/km 10k in 55:00', p.secPerKm, 330);
+  check('speed km/h', p.kmh, 10.909, 0.001);
+  check('pace/mi', p.secPerMi, 531.1, 0.1);
+  check('pace implausible (10 km in 5 min)', C.paceFromTime(10, 300).errors[0].code, 'pace_implausible');
+  check('distance too large', C.paceFromTime(500, 3600).errors[0].code, 'distance_range');
+  check('distance missing', C.paceFromTime(NaN, 3600).errors[0].code, 'missing');
+  check('time from pace 5:00/km over 10 km', C.timeFromPace(10, 300).totalSec, 3000);
+  check('pace out of range', C.timeFromPace(10, 30).errors[0].code, 'pace_range');
+  check('splits 10 km count', C.splits(10, 330, 'km').length, 10);
+  check('splits 5 km in miles count (3 + partial)', C.splits(5, 300, 'mi').length, 4);
+  check('split 3rd km time', C.splits(10, 330, 'km')[2].sec, 990);
+  // race predictor: 5K in 25:00
+  var r = C.predictRaces(5, 1500);
+  check('10K from 5K 25:00 (s)', r.races[1].sec, 3127.4, 1);
+  check('half from 5K 25:00 (s)', r.races[2].sec, 6900, 5);
+  check('marathon from 5K 25:00 (s)', r.races[3].sec, 14387, 10);
+  check('5K flagged as input', r.races[0].isInput, true);
+  check('race same distance returns same time', r.races[0].sec, 1500, 0.001);
+  check('race: 1 km input rejected', C.predictRaces(1, 240).errors[0].code, 'race_distance_range');
+  check('race: implausible time', C.predictRaces(5, 300).errors[0].code, 'pace_implausible');
+  // calories: 70 kg, 5 km in 30 min, run -> 10 km/h
+  var k = C.calories('run', 70, 1800, 5);
+  check('calories run 10 km/h', k.kcal, 350, 2);
+  check('MET at 10 km/h', k.met, 9.99, 0.01);
+  check('calories default run 70kg 30 min', C.calories('run', 70, 1800, NaN).kcal, 343, 1);
+  check('walk 4.8 km/h MET 3.5', C.metFor('walk', 4.8), 3.5, 0.001);
+  check('cycle 20 km/h MET 8', C.metFor('cycle', 20), 8.0, 0.001);
+  check('cycle 20 km/h, 80 kg, 1 h', C.calories('cycle', 80, 3600, 20).kcal, 640, 1);
+  check('run 40 km/h rejected', C.calories('run', 70, 1800, 20).errors[0].code, 'speed_implausible');
+  check('weight 5 kg rejected', C.calories('run', 5, 1800, 5).errors[0].code, 'weight_range');
+  check('weight missing', C.calories('run', NaN, 1800, 5).errors[0].code, 'missing');
+  check('duration 10 s rejected', C.calories('run', 70, 10, NaN).errors[0].code, 'duration_range');
+  // planner
+  var plan = C.trainingPlan(20, 30, 10, 0.10);
+  var v = plan.rows.map(function (x) { return C.round(x.vol, 1); });
+  check('plan week1', v[0], 20);
+  check('plan week2 (+10%)', v[1], 22);
+  check('plan week3', v[2], 24.2);
+  check('plan week4 recovery (80% of 24.2)', v[3], 19.4);
+  check('plan week5 continues from 24.2', v[4], 26.6);
+  check('plan goal reached in week (26.6, 29.3, then 30)', plan.reachedWeek, 7);
+  check('plan week 8 is a recovery week (80% of 30 = 24)', plan.rows[7].type + ' ' + C.round(plan.rows[7].vol, 1), 'recovery 24');
+  check('plan week 9 holds at goal', plan.rows[8].type, 'hold');
+  check('plan goal not reachable in 4 weeks', C.trainingPlan(20, 60, 4, 0.1).reachedWeek, null);
+  check('plan weeks needed 20->60 at 10%', C.trainingPlan(20, 60, 4, 0.1).weeksNeeded > 10, true);
+  check('goal below current', C.trainingPlan(30, 20, 8, 0.1).errors[0].code, 'goal_not_higher');
+  check('current zero', C.trainingPlan(0, 20, 8, 0.1).errors[0].code, 'current_range');
+  check('weeks fractional', C.trainingPlan(20, 30, 8.5, 0.1).errors[0].code, 'weeks_range');
+  // heart rate
+  var z = C.hrZones(30, 'tanaka', NaN);
+  check('max HR age 30 (Tanaka)', z.maxHr, 187);
+  check('Z2 low', z.zones[1].lo, 112);
+  check('Z2 high', z.zones[1].hi, 131);
+  check('classic age 30', C.hrZones(30, 'classic', NaN).maxHr, 190);
+  var zr = C.hrZones(30, 'tanaka', 60);
+  check('reserve Z2 low (60 + 0.6*127)', zr.zones[1].lo, 136);
+  check('reserve Z2 high (60 + 0.7*127)', zr.zones[1].hi, 149);
+  check('age 5 rejected', C.hrZones(5, 'tanaka', NaN).errors[0].code, 'age_range');
+  check('resting 200 rejected', C.hrZones(30, 'tanaka', 200).errors[0].code, 'resting_range');
+  document.getElementById('sum').textContent = pass + ' passed, ' + fail + ' failed';
+  document.getElementById('sum').className = fail ? 'bad' : 'ok';
+  window.TEST_RESULT = { pass: pass, fail: fail };
+})();
+</script>
+</body>
+</html>

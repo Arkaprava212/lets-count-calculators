@@ -1,0 +1,121 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Race Time Predictor: 5K, 10K, Half &amp; Marathon | Let's Count</title>
+<meta name="description" content="Predict your 10K, half marathon and marathon time from a recent 5K or other run using the Riegel formula. Free, with the method and limits explained.">
+<link rel="canonical" href="https://letscount.example/race-time-predictor">
+<link rel="alternate" hreflang="en" href="https://letscount.example/race-time-predictor">
+<link rel="alternate" hreflang="hi" href="https://letscount.example/hi/race-time-predictor">
+<link rel="alternate" hreflang="x-default" href="https://letscount.example/race-time-predictor">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#1d4ed8">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Let's Count">
+<meta property="og:title" content="Race Time Predictor: 5K, 10K, Half &amp; Marathon">
+<meta property="og:description" content="Estimate your finish time at other race distances from a recent run.">
+<meta property="og:url" content="https://letscount.example/race-time-predictor">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Race Time Predictor","url":"https://letscount.example/race-time-predictor","description":"Estimates finish times for 5K, 10K, half marathon and marathon distances from a recent run, using the Riegel formula.","applicationCategory":"HealthApplication","operatingSystem":"Any (web browser)","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://letscount.example/"},{"@type":"ListItem","position":2,"name":"Race Time Predictor","item":"https://letscount.example/race-time-predictor"}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"Which recent run should I enter?","acceptedAnswer":{"@type":"Answer","text":"Use a recent race or a hard, steady effort on a fairly flat route, ideally between 5 km and 15 km. An easy training jog will make the predictions too slow."}},
+{"@type":"Question","name":"Can I predict my marathon time from a 5K?","acceptedAnswer":{"@type":"Answer","text":"The calculator will give a number, but it is usually optimistic. A marathon needs long-run training and fuelling that a fast 5K does not prove. Treat it as an upper limit of what is possible, not a promise."}},
+{"@type":"Question","name":"How accurate are the predictions?","acceptedAnswer":{"@type":"Answer","text":"They are most useful when the new distance is not far from the one you entered and you have trained for it. Heat, hills, sleep, nutrition and pacing can move a real result by several minutes."}},
+{"@type":"Question","name":"Does this work for cycling or walking?","acceptedAnswer":{"@type":"Answer","text":"No. The formula was developed from running results. Cycling times depend heavily on hills, wind and drafting, so a running formula does not fit."}}
+]}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap bar">
+<a class="brand" href="/"><img src="/assets/favicon.svg" alt="" width="34" height="34"><span>Let's Count</span></a>
+<nav class="site-nav" aria-label="Main"><ul>
+<li><a href="/pace-calculator">Pace</a></li>
+<li><a href="/race-time-predictor" aria-current="page">Race times</a></li>
+<li><a href="/calories-burned-calculator">Calories</a></li>
+<li><a href="/weekly-training-planner">Training plan</a></li>
+<li><a href="/heart-rate-zone-calculator">Heart-rate zones</a></li>
+<li><a href="/about">About</a></li>
+</ul></nav>
+<a class="lang" href="/hi/race-time-predictor" hreflang="hi" lang="hi">हिन्दी</a>
+</div></header>
+
+<main id="main" class="wrap">
+<p class="crumbs"><a href="/">Home</a> › Race Time Predictor</p>
+<h1>Race Time Predictor: 5K, 10K, Half Marathon and Marathon</h1>
+<p class="lead">Free to use. Enter a recent run and see an estimate of what you could run over other common race distances if you train for them.</p>
+
+<div class="calc">
+<div class="panel">
+<h2>Enter a recent run</h2>
+<form id="calc-form" data-calc="race" novalidate>
+<div class="field"><span class="label" id="u-lab">Units</span>
+<div class="seg" role="radiogroup" aria-labelledby="u-lab">
+<label><input type="radio" name="units" id="u-km" value="km" checked><span>km</span></label>
+<label><input type="radio" name="units" id="u-mi" value="mi"><span>miles</span></label>
+</div></div>
+<div class="field"><label for="distance">Distance of your run (<span data-unit-text>km</span>)</label>
+<input type="text" id="distance" inputmode="decimal" autocomplete="off" placeholder="for example 5" data-field="distance" data-label="Distance">
+<div class="quick" role="group" aria-label="Common distances">
+<button type="button" class="chip" data-km="5">5K</button><button type="button" class="chip" data-km="10">10K</button><button type="button" class="chip" data-km="21.0975">Half marathon</button>
+</div></div>
+<div class="field"><span class="label" id="t-lab">Your time</span>
+<div class="time" role="group" aria-labelledby="t-lab">
+<div><label for="t-h">Hours</label><input type="text" id="t-h" inputmode="numeric" autocomplete="off" placeholder="0" data-field="time" data-label="Time"></div>
+<div><label for="t-m">Minutes</label><input type="text" id="t-m" inputmode="numeric" autocomplete="off" placeholder="25" data-field="time" data-label="Time"></div>
+<div><label for="t-s">Seconds</label><input type="text" id="t-s" inputmode="decimal" autocomplete="off" placeholder="0" data-field="time" data-label="Time"></div>
+</div></div>
+<div class="actions">
+<button class="btn btn-primary" type="submit">Predict</button>
+<button class="btn btn-ghost" type="reset">Reset</button>
+<button class="btn btn-ghost" type="button" data-example='{"distance":"5","t-m":"25"}'>Try an example</button>
+</div>
+</form>
+</div>
+<div class="panel"><div id="result" aria-live="polite"><h2>Your result</h2><p class="placeholder">Enter a recent run and press Predict. Estimated times and the assumptions used will appear here.</p></div></div>
+</div>
+
+<div class="content">
+<h2>What this calculator does</h2>
+<p>If you know how fast you ran one distance, you can make a reasonable guess at how fast you could run another. This predictor takes one recent run and estimates your time for a 5K, 10K, half marathon and marathon. It is meant to help you choose a realistic goal, not to promise a result.</p>
+
+<h2>How it is calculated</h2>
+<p class="formula">New time = your time × (new distance ÷ your distance) ^ 1.06</p>
+<p>This is the Riegel formula, published by Pete Riegel in 1981. The 1.06 exponent means that you slow down slightly, per kilometre, as the distance grows. The calculator applies the formula to each race distance and then divides by the distance to show the pace you would need.</p>
+
+<h2>Worked example</h2>
+<p>A runner completes a 5K in 25:00 (1,500 seconds). For a 10K the distance ratio is 10 ÷ 5 = 2, and 2 ^ 1.06 ≈ 2.085, so the estimate is 1,500 × 2.085 ≈ 3,127 seconds, or <strong>about 52:07</strong> (5:13 per km). The same steps give <strong>about 1:55:00</strong> for a half marathon and <strong>about 3:59:47</strong> for a marathon. The marathon figure is the least reliable of these, because it needs far more endurance training than a 5K does. Press "Try an example" above to see the full table.</p>
+
+<h2>Limitations</h2>
+<ul>
+<li>It works best when the distance you enter is a hard, recent effort and the target distance is not very different from it.</li>
+<li>Predictions for much longer races tend to be optimistic unless your training includes long runs.</li>
+<li>Heat, hills, altitude, sleep, nutrition and pacing mistakes are not included.</li>
+<li>It was built from running results and does not suit walking or cycling.</li>
+<li>Inputs under 1.5 km or over 50 km, or a pace slower than 20:00 or faster than 2:30 per km, are rejected as probable typing mistakes.</li>
+</ul>
+
+<h2>Common questions</h2>
+<details class="faq"><summary>Which recent run should I enter?</summary><div><p>Use a recent race or a hard, steady effort on a fairly flat route, ideally between 5 km and 15 km. An easy training jog will make the predictions too slow.</p></div></details>
+<details class="faq"><summary>Can I predict my marathon time from a 5K?</summary><div><p>The calculator will give a number, but it is usually optimistic. A marathon needs long-run training and fuelling that a fast 5K does not prove. Treat it as an upper limit of what is possible, not a promise.</p></div></details>
+<details class="faq"><summary>How accurate are the predictions?</summary><div><p>They are most useful when the new distance is not far from the one you entered and you have trained for it. Heat, hills, sleep, nutrition and pacing can move a real result by several minutes.</p></div></details>
+<details class="faq"><summary>Does this work for cycling or walking?</summary><div><p>No. The formula was developed from running results. Cycling times depend heavily on hills, wind and drafting, so a running formula does not fit.</p></div></details>
+
+<h2>Related calculators</h2>
+<ul class="related">
+<li><a href="/pace-calculator">Pace Calculator</a></li>
+<li><a href="/weekly-training-planner">Weekly Training Planner</a></li>
+<li><a href="/heart-rate-zone-calculator">Heart Rate Zone Calculator</a></li>
+<li><a href="/calories-burned-calculator">Calories Burned Calculator</a></li>
+</ul>
+<p class="updated">Last reviewed: 28 October 2026. Results are estimates for planning, not guarantees.</p>
+</div>
+</main>
+<script src="/assets/calc.js"></script>
+<script src="/assets/ui.js"></script>
+</body>
+</html>

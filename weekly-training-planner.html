@@ -1,0 +1,118 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Weekly Mileage Planner: Build Distance Gradually | Let's Count</title>
+<meta name="description" content="Plan a gradual weekly distance build-up for running, walking or cycling, with recovery weeks. Free planner with the method and its limits explained.">
+<link rel="canonical" href="https://letscount.example/weekly-training-planner">
+<link rel="alternate" hreflang="en" href="https://letscount.example/weekly-training-planner">
+<link rel="alternate" hreflang="hi" href="https://letscount.example/hi/weekly-training-planner">
+<link rel="alternate" hreflang="x-default" href="https://letscount.example/weekly-training-planner">
+<link rel="icon" href="/assets/favicon.svg" type="image/svg+xml">
+<meta name="theme-color" content="#1d4ed8">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Let's Count">
+<meta property="og:title" content="Weekly Mileage Planner: Build Distance Gradually">
+<meta property="og:description" content="A week-by-week distance plan with gradual increases and recovery weeks.">
+<meta property="og:url" content="https://letscount.example/weekly-training-planner">
+<link rel="stylesheet" href="/assets/style.css">
+<script type="application/ld+json">
+{"@context":"https://schema.org","@graph":[
+{"@type":"WebApplication","name":"Weekly Training Planner","url":"https://letscount.example/weekly-training-planner","description":"Builds a week-by-week plan of total weekly distance from a current weekly distance to a goal, with gradual increases and a recovery week every fourth week.","applicationCategory":"HealthApplication","operatingSystem":"Any (web browser)","inLanguage":"en","isAccessibleForFree":true,"offers":{"@type":"Offer","price":"0","priceCurrency":"INR"}},
+{"@type":"BreadcrumbList","itemListElement":[{"@type":"ListItem","position":1,"name":"Home","item":"https://letscount.example/"},{"@type":"ListItem","position":2,"name":"Weekly Training Planner","item":"https://letscount.example/weekly-training-planner"}]},
+{"@type":"FAQPage","mainEntity":[
+{"@type":"Question","name":"What is the 10% rule?","acceptedAnswer":{"@type":"Answer","text":"It is a popular rule of thumb that suggests increasing your weekly distance by no more than about 10% from one week to the next. It is a guide, not a proven safe limit. Some people need slower increases, especially beginners and anyone returning from a break."}},
+{"@type":"Question","name":"Why does the plan include recovery weeks?","acceptedAnswer":{"@type":"Answer","text":"Many coaches schedule a lighter week every third or fourth week so the body can adapt to the extra work. This planner uses every fourth week at 80% of the last build week."}},
+{"@type":"Question","name":"Can I use it for cycling?","acceptedAnswer":{"@type":"Answer","text":"You can enter cycling distance, but cyclists often plan by hours rather than distance because speed changes so much with terrain and wind. Use it as a rough guide only."}},
+{"@type":"Question","name":"Is this plan safe if I am coming back from an injury or a health problem?","acceptedAnswer":{"@type":"Answer","text":"This planner cannot judge that. It only does arithmetic on the numbers you enter. If you are injured, ill, pregnant or have a health condition, ask a doctor or a qualified coach before increasing your training."}}
+]}]}
+</script>
+</head>
+<body>
+<a class="skip" href="#main">Skip to content</a>
+<header class="site-header"><div class="wrap bar">
+<a class="brand" href="/"><img src="/assets/favicon.svg" alt="" width="34" height="34"><span>Let's Count</span></a>
+<nav class="site-nav" aria-label="Main"><ul>
+<li><a href="/pace-calculator">Pace</a></li>
+<li><a href="/race-time-predictor">Race times</a></li>
+<li><a href="/calories-burned-calculator">Calories</a></li>
+<li><a href="/weekly-training-planner" aria-current="page">Training plan</a></li>
+<li><a href="/heart-rate-zone-calculator">Heart-rate zones</a></li>
+<li><a href="/about">About</a></li>
+</ul></nav>
+<a class="lang" href="/hi/weekly-training-planner" hreflang="hi" lang="hi">हिन्दी</a>
+</div></header>
+
+<main id="main" class="wrap">
+<p class="crumbs"><a href="/">Home</a> › Weekly Training Planner</p>
+<h1>Weekly Training Planner: Build Your Distance Gradually</h1>
+<p class="lead">Free to use. Enter how far you cover in a typical week now and the weekly distance you want to reach. You get a week-by-week plan with gradual increases and regular recovery weeks.</p>
+
+<div class="calc">
+<div class="panel">
+<h2>Enter your plan</h2>
+<form id="calc-form" data-calc="planner" novalidate>
+<div class="field"><span class="label" id="u-lab">Units</span>
+<div class="seg" role="radiogroup" aria-labelledby="u-lab">
+<label><input type="radio" name="units" id="u-km" value="km" checked><span>km</span></label>
+<label><input type="radio" name="units" id="u-mi" value="mi"><span>miles</span></label>
+</div></div>
+<div class="field"><label for="current">Your typical week now (<span data-unit-text>km</span> per week)</label>
+<input type="text" id="current" inputmode="decimal" autocomplete="off" placeholder="for example 20" data-field="current" data-label="Current weekly distance"></div>
+<div class="field"><label for="goal">Your goal (<span data-unit-text>km</span> per week)</label>
+<input type="text" id="goal" inputmode="decimal" autocomplete="off" placeholder="for example 30" data-field="goal" data-label="Goal"></div>
+<div class="field"><label for="weeks">Number of weeks to plan</label>
+<input type="text" id="weeks" inputmode="numeric" autocomplete="off" placeholder="for example 10" data-field="weeks" data-label="Weeks"></div>
+<div class="field"><label for="rate">How fast to build</label>
+<select id="rate" name="rate"><option value="10" selected>Standard: up to 10% more each week</option><option value="5">Gentle: up to 5% more each week</option></select></div>
+<div class="actions">
+<button class="btn btn-primary" type="submit">Build my plan</button>
+<button class="btn btn-ghost" type="reset">Reset</button>
+<button class="btn btn-ghost" type="button" data-example='{"current":"20","goal":"30","weeks":"10"}'>Try an example</button>
+</div>
+</form>
+</div>
+<div class="panel"><div id="result" aria-live="polite"><h2>Your result</h2><p class="placeholder">Enter your numbers and press Build my plan. Your weekly plan and the assumptions used will appear here.</p></div></div>
+</div>
+
+<div class="content">
+<h2>What this calculator does</h2>
+<p>Doing too much too soon is a common reason people stop training. This planner shows how many weeks it takes to move from your current weekly distance to a higher one if you add a modest amount each week and take an easier week now and then. It works for running and walking, and gives a rough guide for cycling.</p>
+
+<h2>How it is calculated</h2>
+<p class="formula">Build week = previous build week × (1 + increase), never above your goal<br>Every 4th week = 80% of the last build week (recovery)<br>Long run ≈ 30% of the week's total</p>
+<p>Week 1 is your current distance. Each following build week adds up to the percentage you choose (10% or 5%) to the previous build week. Every fourth week is a recovery week. After a recovery week, the next build week continues from the previous build week, not from the lighter one. Once you reach the goal, later weeks hold at that level.</p>
+
+<h2>Worked example</h2>
+<p>Someone covers 20 km a week and wants 30 km a week within 10 weeks, adding up to 10% each week. The plan is 20, 22, 24.2, then a recovery week at 19.4 (80% of 24.2), then 26.6, 29.3 and <strong>30 km in week 7</strong>. Week 8 is another recovery week at 24 km, and weeks 9 and 10 hold at 30 km. The long run would be about 9 km in a 30 km week. Press "Try an example" above to see the full table.</p>
+
+<h2>Limitations</h2>
+<ul>
+<li>Adding about 10% a week is a popular rule of thumb, not a proven safe limit. Many people, especially beginners, need to build more slowly.</li>
+<li>The planner only counts distance. It does not know your injuries, health, sleep, age, terrain or how hard your sessions are.</li>
+<li>It does not schedule individual runs, rest days, strength work or a race taper.</li>
+<li>If the goal is not reachable in your chosen number of weeks, the result says how far you get and how many weeks you would need.</li>
+<li>It is not medical or coaching advice. Stop and see a doctor if you feel pain, dizziness or chest discomfort.</li>
+</ul>
+
+<h2>Common questions</h2>
+<details class="faq"><summary>What is the 10% rule?</summary><div><p>It is a popular rule of thumb that suggests increasing your weekly distance by no more than about 10% from one week to the next. It is a guide, not a proven safe limit. Some people need slower increases, especially beginners and anyone returning from a break.</p></div></details>
+<details class="faq"><summary>Why does the plan include recovery weeks?</summary><div><p>Many coaches schedule a lighter week every third or fourth week so the body can adapt to the extra work. This planner uses every fourth week at 80% of the last build week.</p></div></details>
+<details class="faq"><summary>Can I use it for cycling?</summary><div><p>You can enter cycling distance, but cyclists often plan by hours rather than distance because speed changes so much with terrain and wind. Use it as a rough guide only.</p></div></details>
+<details class="faq"><summary>Is this plan safe if I am coming back from an injury or a health problem?</summary><div><p>This planner cannot judge that. It only does arithmetic on the numbers you enter. If you are injured, ill, pregnant or have a health condition, ask a doctor or a qualified coach before increasing your training.</p></div></details>
+
+<h2>Related calculators</h2>
+<ul class="related">
+<li><a href="/race-time-predictor">Race Time Predictor</a></li>
+<li><a href="/pace-calculator">Pace Calculator</a></li>
+<li><a href="/heart-rate-zone-calculator">Heart Rate Zone Calculator</a></li>
+<li><a href="/calories-burned-calculator">Calories Burned Calculator</a></li>
+</ul>
+<p class="updated">Last reviewed: 28 October 2026. Results are estimates for planning, not guarantees.</p>
+</div>
+</main>
+<script src="/assets/calc.js"></script>
+<script src="/assets/ui.js"></script>
+</body>
+</html>
